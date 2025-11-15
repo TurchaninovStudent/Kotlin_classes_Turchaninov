@@ -1,5 +1,5 @@
-import kotlin.math.pow
-import kotlin.math.sqrt
+import Models.Point
+import Models.Triangle
 
 /////////////////////////////////////////////
 //
@@ -22,22 +22,21 @@ fun main() {
 
     val triangle = initializeTriangle() ?: return
 
-    val x: Double
-    val y: Double
+    var point = Point(0.0,0.0)
 
     try {
         print("Введите X точки: ")
-        x = readln().toDouble()
+        point.x = readln().toDouble()
 
         print("Введите Y точки: ")
-        y = readln().toDouble()
+        point.y = readln().toDouble()
 
     } catch (_: Exception) {
         print("Вводить только числа")
         return
     }
 
-    if (triangle.isDotOutside(Point(x, y))) {
+    if (triangle.isDotInsideOrOnEdge(point)) {
         println("Точка за пределами или на треугольнике")
     } else {
         println("Точка внутри треугольника")
@@ -45,7 +44,7 @@ fun main() {
 }
 
 fun initializeTriangle(): Triangle? {
-    var resultPoints: Array<Point> = Array(3) {Point(0.0,0.0)}
+    var resultPoints: Array<Point> = Array(3) { Point(0.0,0.0) }
 
     for (i in 0 until 3) {
         println("Введите ${i + 1}-ую координату треугольника: ")
@@ -69,6 +68,7 @@ fun initializeTriangle(): Triangle? {
     }
 
     if (!arePointsValidForTriangle(resultPoints)) {
+        print("Введённый треугольник не валиден")
         return null
     }
 
@@ -76,11 +76,13 @@ fun initializeTriangle(): Triangle? {
 }
 
 fun arePointsValidForTriangle(targetPoints: Array<Point>): Boolean {
-    val abSize = sqrt((targetPoints[0].X - targetPoints[1].X).pow(2.0) + (targetPoints[0].Y - targetPoints[1].Y).pow(2.0))
-    val bcSize = sqrt((targetPoints[1].X - targetPoints[2].X).pow(2.0) + (targetPoints[1].Y - targetPoints[2].Y).pow(2.0))
-    val caSize = sqrt((targetPoints[2].X - targetPoints[0].X).pow(2.0) + (targetPoints[2].Y - targetPoints[0].Y).pow(2.0))
+    val abSize = getDistanceBetweenThePoints(targetPoints[0], targetPoints[1])
+    val bcSize = getDistanceBetweenThePoints(targetPoints[1], targetPoints[2])
+    val caSize = getDistanceBetweenThePoints(targetPoints[2], targetPoints[0])
 
-    if (abSize + bcSize == caSize) {
+    if (abSize + bcSize == caSize
+        || bcSize + caSize == abSize
+        || abSize + caSize == bcSize) {
         return false
     }
 

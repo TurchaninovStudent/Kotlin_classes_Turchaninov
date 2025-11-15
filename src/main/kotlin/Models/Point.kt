@@ -1,4 +1,4 @@
-/////////////////////////////////////////////
+package Models/////////////////////////////////////////////
 //
 // Практическая №4. Классы, основы
 // Выполнили Турчанинов А.Е.
@@ -13,7 +13,7 @@
  * @param startX Координата X.
  * @param startY Координата Y.
  */
-public class Point(val startX: Double, val startY: Double) {
-    public val X: Double = startX;
-    public val Y: Double = startY;
+class Point(private val startX: Double, private val startY: Double) {
+    var x: Double = startX;
+    var y: Double = startY;
 }
