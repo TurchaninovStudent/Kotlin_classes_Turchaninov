@@ -1,4 +1,4 @@
-import Models.Point
+import models.Point
 
 /////////////////////////////////////////////
 //
@@ -35,7 +35,7 @@ fun main() {
         return
     }
     println()
-    var points = input1DPointArray(pointsAmount) ?: return
+    var points = input1DPointArray(pointsAmount)
 
     print("Максимальное растояние: ")
     printAsInteger(getMostPoint(points, true))
@@ -44,22 +44,24 @@ fun main() {
     printAsInteger(getMostPoint(points, false))
 }
 
-fun input1DPointArray(pointsAmount: Int): Array<Point>? {
+fun input1DPointArray(pointsAmount: Int): Array<Point> {
     val resultArray = Array(pointsAmount) { Point(0.0,0.0) }
+    var i = 0
 
-    for (i in 0 until pointsAmount) {
+    while (i < pointsAmount) {
         try {
             print("Введите X точки ${i+1}: ")
-            resultArray[0].x = readln().toDouble()
+            resultArray[i].x = readln().toDouble()
 
             print("Введите Y точки ${i+1}: ")
-            resultArray[0].y = readln().toDouble()
+            resultArray[i].y = readln().toDouble()
 
             println()
         } catch (_: Exception) {
-            print("Вводить только целые числа")
-            return null
+            println("Вводить только целые числа")
+            continue
         }
+        i++
     }
 
     return resultArray

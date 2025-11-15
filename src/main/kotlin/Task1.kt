@@ -1,5 +1,5 @@
-import Models.Point
-import Models.Triangle
+import models.Point
+import models.Triangle
 
 /////////////////////////////////////////////
 //
@@ -37,54 +37,8 @@ fun main() {
     }
 
     if (triangle.isDotInsideOrOnEdge(point)) {
-        println("Точка за пределами или на треугольнике")
-    } else {
         println("Точка внутри треугольника")
+    } else {
+        println("Точка за пределами или на треугольнике")
     }
-}
-
-fun initializeTriangle(): Triangle? {
-    var resultPoints: Array<Point> = Array(3) { Point(0.0,0.0) }
-
-    for (i in 0 until 3) {
-        println("Введите ${i + 1}-ую координату треугольника: ")
-
-        val x: Double
-        val y: Double
-
-        try {
-            print("x: ")
-            x = readln().toDouble()
-
-            print("y: ")
-            y = readln().toDouble()
-
-        } catch (_: Exception) {
-            print("Вводить только числа")
-            return null
-        }
-
-        resultPoints[i] = Point(x, y)
-    }
-
-    if (!arePointsValidForTriangle(resultPoints)) {
-        print("Введённый треугольник не валиден")
-        return null
-    }
-
-    return Triangle(resultPoints)
-}
-
-fun arePointsValidForTriangle(targetPoints: Array<Point>): Boolean {
-    val abSize = getDistanceBetweenThePoints(targetPoints[0], targetPoints[1])
-    val bcSize = getDistanceBetweenThePoints(targetPoints[1], targetPoints[2])
-    val caSize = getDistanceBetweenThePoints(targetPoints[2], targetPoints[0])
-
-    if (abSize + bcSize == caSize
-        || bcSize + caSize == abSize
-        || abSize + caSize == bcSize) {
-        return false
-    }
-
-    return true
 }

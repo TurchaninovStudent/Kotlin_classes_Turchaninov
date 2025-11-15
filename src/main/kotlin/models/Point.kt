@@ -1,4 +1,4 @@
-package Models/////////////////////////////////////////////
+package models/////////////////////////////////////////////
 //
 // Практическая №4. Классы, основы
 // Выполнили Турчанинов А.Е.
@@ -16,4 +16,12 @@ package Models/////////////////////////////////////////////
 class Point(private val startX: Double, private val startY: Double) {
     var x: Double = startX;
     var y: Double = startY;
+
+    operator fun plus(otherPoint: Point): Point {
+        return Point(x + otherPoint.x, y + otherPoint.y)
+    }
+
+    operator fun minus(otherPoint: Point): Point {
+        return Point(x - otherPoint.x, y - otherPoint.y)
+    }
 }
