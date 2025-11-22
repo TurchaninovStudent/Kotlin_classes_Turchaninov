@@ -1,3 +1,4 @@
+import models.DistanceResult
 import models.Point
 
 /////////////////////////////////////////////
@@ -34,14 +35,21 @@ fun main() {
         print("Вводить только числа")
         return
     }
+
     println()
     var points = input1DPointArray(pointsAmount)
 
-    print("Максимальное растояние: ")
-    printAsInteger(getMostPoint(points, true))
+    var maxResult = getMaxDistanceBetweenThePoint(points)
 
-    print("Минимальное растояние: ")
-    printAsInteger(getMostPoint(points, false))
+    print("Максимальное растояние найдено между ${maxResult.start} и ${maxResult.end}: ")
+    printAsInteger(maxResult.distance)
+    println()
+
+    var minResult = getMinDistanceBetweenThePoint(points)
+
+    print("Минимальное растояние найдено между ${minResult.start} и ${minResult.end}: ")
+    printAsInteger(minResult.distance)
+    println()
 }
 
 fun input1DPointArray(pointsAmount: Int): Array<Point> {
@@ -67,8 +75,10 @@ fun input1DPointArray(pointsAmount: Int): Array<Point> {
     return resultArray
 }
 
-fun getMostPoint(points: Array<Point>, max: Boolean): Double {
-    var maxDistance = getDistanceBetweenThePoints(points[0], points[1])
+fun getMaxDistanceBetweenThePoint(points: Array<Point>): DistanceResult {
+    var firstPointNumber: Int = 0
+    var secondPointNumber: Int = 1
+    var maxDistance = Point.getDistanceBetweenThePoints(points[firstPointNumber], points[secondPointNumber])
 
     for (i in points.indices) {
         for (j in points.indices) {
@@ -76,19 +86,39 @@ fun getMostPoint(points: Array<Point>, max: Boolean): Double {
                 continue
             }
 
-            val current = getDistanceBetweenThePoints(points[j], points[i])
+            val current = Point.getDistanceBetweenThePoints(points[j], points[i])
 
-            if (max) {
-                if (maxDistance < current) {
-                    maxDistance = current
-                }
-            } else {
-                if (maxDistance > current) {
-                    maxDistance = current
-                }
+            if (maxDistance < current) {
+                maxDistance = current
+                firstPointNumber = i + 1
+                secondPointNumber = j + 1
             }
         }
     }
 
-    return maxDistance
+    return DistanceResult(maxDistance, firstPointNumber, secondPointNumber)
+}
+
+fun getMinDistanceBetweenThePoint(points: Array<Point>): DistanceResult {
+    var firstPointNumber: Int = 0
+    var secondPointNumber: Int = 1
+    var maxDistance = Point.getDistanceBetweenThePoints(points[firstPointNumber], points[secondPointNumber])
+
+    for (i in points.indices) {
+        for (j in points.indices) {
+            if (points[i] == points[j]) {
+                continue
+            }
+
+            val current = Point.getDistanceBetweenThePoints(points[j], points[i])
+
+            if (maxDistance > current) {
+                maxDistance = current
+                firstPointNumber = i + 1
+                secondPointNumber = j + 1
+            }
+        }
+    }
+
+    return DistanceResult(maxDistance, firstPointNumber, secondPointNumber)
 }

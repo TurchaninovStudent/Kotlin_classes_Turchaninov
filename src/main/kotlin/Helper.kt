@@ -13,9 +13,7 @@ import kotlin.math.sqrt
 //
 /////////////////////////////////////////////
 
-fun getDistanceBetweenThePoints(point1: Point, point2: Point): Double {
-    return sqrt((point1.x - point2.x).pow(2.0) + (point1.y - point2.y).pow(2.0))
-}
+
 
 fun printAsInteger(number: Double) {
     if (number == number.toInt().toDouble()) {
