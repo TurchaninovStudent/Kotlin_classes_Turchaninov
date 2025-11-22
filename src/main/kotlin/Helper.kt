@@ -69,7 +69,7 @@ fun arePointsValidForTriangle(targetPoints: Array<Point>): Boolean {
     val ab = Point(b.x - a.x, b.y - a.y)
     val ac = Point(c.x - a.x, c.y - a.y)
 
-    val cross = ab.x * ac.y - ab.y * ac.x
+    val cross = Point.crossProduct(ab, ac) // ab.x * ac.y - ab.y * ac.x
 
     return cross != 0.0
 }

@@ -39,7 +39,7 @@ fun main() {
         return
     }
 
-    val distance = Point.getDistanceBetweenThePoints(point1, point2)
+    val distance = Point.distance(point1, point2)
 
     print("Расстояние от точки 1 до точки 2: ")
     printAsInteger(distance)

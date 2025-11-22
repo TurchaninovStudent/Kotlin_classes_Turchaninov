@@ -25,10 +25,18 @@ class Point(private val startX: Double, private val startY: Double) {
     companion object {
         fun crossProduct(v1: Point, v2: Point): Double = v1.x * v2.y - v1.y * v2.x
 
-        fun getDistanceBetweenThePoints(point1: Point, point2: Point): Double {
+        /**
+         * Получить расстояние
+         * @param point точка
+         */
+        fun distance(point1: Point, point2: Point): Double {
             return sqrt((point1.x - point2.x).pow(2.0) + (point1.y - point2.y).pow(2.0))
         }
 
+        /**
+         * Возвести точку в квадрат
+         * @param point точка
+         */
         fun sqrPoint(point: Point): Double {
             return Math.pow(point.x, 2.0) + Math.pow(point.y, 2.0)
         }

@@ -13,9 +13,9 @@ package models
 /**
  * Окружность
  * @param startCenter центр окружности
- * @param startRadious радиус окружности
+ * @param startRadius радиус окружности
  */
-class Circle(private val startCenter: Point, private val startRadious: Double) {
-    val radious: Double = startRadious
+class Circle(private val startCenter: Point, private val startRadius: Double) {
+    val radius: Double = startRadius
     val center: Point = startCenter
 }

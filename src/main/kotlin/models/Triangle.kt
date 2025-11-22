@@ -15,13 +15,9 @@ package models
  * @param startTakenPoints точки треугольника в виде списка (A - 0, B - 1, C - 2).
  */
 class Triangle(private val startTakenPoints: Array<Point>) {
-    private val a: Point = startTakenPoints[0];
-    private val b: Point = startTakenPoints[1];
-    private val c: Point = startTakenPoints[2];
-
-    companion object {
-
-    }
+    private val a: Point = startTakenPoints[0]
+    private val b: Point = startTakenPoints[1]
+    private val c: Point = startTakenPoints[2]
 
     /**
      * Проверяет, лежит ли точка ВНУТРИ или НА ГРАНИЦЕ треугольника.
@@ -44,10 +40,16 @@ class Triangle(private val startTakenPoints: Array<Point>) {
                 (cross1 <= 0 && cross2 <= 0 && cross3 <= 0)
     }
 
-    fun area(): Double {
+    /**
+     * Получить площадь треугольника
+     */
+    private fun area(): Double {
         return 0.5 * ((a.x * b.y + b.x * c.y + c.x * a.y) - (a.y * b.x + b.y * c.x + c.y * a.x))
     }
 
+    /**
+     * Получить описанную окружность вокруг треугольника
+     */
     fun getOutOfBoundsCircle(): Circle? {
         val d = 2 * (a.x * (b.y - c.y) + b.x * (c.y - a.y) + c.x * (a.y - b.y))
 
@@ -55,14 +57,31 @@ class Triangle(private val startTakenPoints: Array<Point>) {
             return null
         }
 
-        val ux = (Point.sqrPoint(a) * (b.y - c.y) + Point.sqrPoint(b) * (c.y - a.y) + Point.sqrPoint(c) * (a.y - b.y))
-        val uy = (Point.sqrPoint(a) * (b.x - c.x) + Point.sqrPoint(b) * (c.x - a.x) + Point.sqrPoint(c) * (a.x - b.x))
+        val ux = (Point.sqrPoint(a) * (b.y - c.y) + Point.sqrPoint(b) * (c.y - a.y) + Point.sqrPoint(c) * (a.y - b.y)) / d
+        val uy = (Point.sqrPoint(a) * (c.x - b.x) + Point.sqrPoint(b) * (a.x - c.x) + Point.sqrPoint(c) * (b.x - a.x)) / d
 
         val center = Point(ux, uy)
 
-        val r = Point.getDistanceBetweenThePoints(center, a)
+        val r = Point.distance(center, b)
 
         return Circle(center, r);
     }
 
+    /**
+     * Получить вписанную окружность в треугольник
+     */
+    fun getInBoundsCircle(): Circle? {
+        var ab = Point.distance(a, b)
+        var bc = Point.distance(b, c)
+        var ca = Point.distance(c, a)
+
+        val ux = (bc * a.x + ca * b.x + ab * c.x) / (ab + bc + ca)
+        val uy = (bc * a.y + ca * b.y + ab * c.y) / (ab + bc + ca)
+
+        val center = Point(ux, uy)
+
+        val r = area() / ((ab + bc + ca) / 2.0)
+
+        return Circle(center, r);
+    }
 }

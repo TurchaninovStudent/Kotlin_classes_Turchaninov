@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3291510b-8bfe-47ec-b80a-ee99481cd35f" name="Changes" comment="fixed task 1, doing 4 and 5">
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/models/DistanceResult.kt" afterDir="false" />
+    <list default="true" id="3291510b-8bfe-47ec-b80a-ee99481cd35f" name="Changes" comment="made all, kinda need to format it">
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/Task4.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/Task5.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/Helper.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/Helper.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/Task2.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/Task2.kt" afterDir="false" />
@@ -89,7 +90,14 @@
       <option name="project" value="LOCAL" />
       <updated>1763210937191</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="made 4">
+      <created>1763806294015</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1763806294015</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -113,6 +121,8 @@
     <MESSAGE value="init" />
     <MESSAGE value="still need to adjust 1 and 3 task, 4 5 upcoming" />
     <MESSAGE value="fixed task 1, doing 4 and 5" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed task 1, doing 4 and 5" />
+    <MESSAGE value="made 4" />
+    <MESSAGE value="made all, kinda need to format it" />
+    <option name="LAST_COMMIT_MESSAGE" value="made all, kinda need to format it" />
   </component>
 </project>
