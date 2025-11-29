@@ -1,4 +1,4 @@
-package models
+package models.shapes
 
 /////////////////////////////////////////////
 //
@@ -15,7 +15,7 @@ package models
  * @param startCenter центр окружности
  * @param startRadius радиус окружности
  */
-class Circle(private val startCenter: Point, private val startRadius: Double) {
+class Circle(startCenter: Point, startRadius: Double) {
     val radius: Double = startRadius
     val center: Point = startCenter
 }

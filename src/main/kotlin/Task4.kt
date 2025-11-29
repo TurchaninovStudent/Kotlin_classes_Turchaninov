@@ -1,4 +1,4 @@
-import models.Circle
+import models.shapes.Circle
 
 /////////////////////////////////////////////
 //

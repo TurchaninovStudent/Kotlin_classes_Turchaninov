@@ -1,4 +1,4 @@
-import models.Circle
+import models.shapes.Circle
 
 /////////////////////////////////////////////
 //
@@ -19,7 +19,7 @@ fun main() {
 
     val triangle = initializeTriangle() ?: return
 
-    val circle: Circle = triangle.getInBoundsCircle() ?: return
+    val circle: Circle = triangle.getInBoundsCircle()
 
     println("Центр вписанной окружности -> X = ${circle.center.x} Y = ${circle.center.y}")
     println("Радиус вписанной окружности -> R = ${circle. radius}")

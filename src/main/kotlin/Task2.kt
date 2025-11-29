@@ -1,4 +1,4 @@
-import models.Point
+import models.shapes.Point
 
 /////////////////////////////////////////////
 //
@@ -18,26 +18,8 @@ fun main() {
         Найти расстояние между указанными точками."""
     )
 
-    var point1 = Point(0.0,0.0)
-    var point2 = Point(0.0,0.0)
-
-    try {
-        print("Введите X первой точки: ")
-        point1.x = readln().toDouble()
-
-        print("Введите Y первой точки: ")
-        point1.y = readln().toDouble()
-
-        print("Введите X второй точки: ")
-        point2.x = readln().toDouble()
-
-        print("Введите Y второй точки: ")
-        point2.y = readln().toDouble()
-
-    } catch (_: Exception) {
-        print("Вводить только числа")
-        return
-    }
+    val point1 = enterPoint(1) ?: return
+    val point2 = enterPoint(2) ?: return
 
     val distance = Point.distance(point1, point2)
 

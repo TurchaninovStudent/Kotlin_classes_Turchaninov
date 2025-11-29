@@ -1,7 +1,5 @@
-import models.Point
-import models.Triangle
-import kotlin.math.pow
-import kotlin.math.sqrt
+import models.shapes.Point
+import models.shapes.Triangle
 
 /////////////////////////////////////////////
 //
@@ -13,8 +11,6 @@ import kotlin.math.sqrt
 //
 /////////////////////////////////////////////
 
-
-
 fun printAsInteger(number: Double) {
     if (number == number.toInt().toDouble()) {
         print(number.toInt())
@@ -23,38 +19,61 @@ fun printAsInteger(number: Double) {
     }
 }
 
+fun enterPoint(number: Int, array: Array<Point>? = null): Point? {
+    val x: Double
+    val y: Double
+
+    try {
+        print("Введите X точки ${number}: ")
+        x = readln().toDouble()
+
+        print("Введите Y точки ${number}: ")
+        y = readln().toDouble()
+
+        if (array != null) {
+            if (pointContains(array.toList(), Point(x, y))) {
+                throw Exception()
+            }
+        }
+
+    } catch (_: Exception) {
+        println("Вводить только целые числа и без повторов")
+        return null
+    }
+
+    println()
+    return Point(x, y)
+}
+
 fun initializeTriangle(): Triangle? {
-    var resultPoints: Array<Point> = Array(3) { Point(0.0,0.0) }
+    val resultPoints: Array<Point> = Array(3) { Point(0.0,0.0) }
     var i = 0
 
     while (i < 3) {
         println("Введите ${i + 1}-ую координату треугольника: ")
 
-        var x: Double = 0.0
-        var y: Double = 0.0
+        val point = enterPoint(i + 1) ?: continue
 
-        try {
-            print("x: ")
-            x = readln().toDouble()
-
-            print("y: ")
-            y = readln().toDouble()
-
-        } catch (_: Exception) {
-            println("Вводить только числа")
-            continue
-        }
-
-        resultPoints[i] = Point(x, y)
+        resultPoints[i] = point
         i++
     }
 
     if (!arePointsValidForTriangle(resultPoints)) {
-        println("Введённый треугольник не валиден")
+        println("Введённый треугольник не валиден (все находиться на одно линии)")
         return null
     }
 
     return Triangle(resultPoints)
+}
+
+fun pointContains (targetArray: List<Point>, targetPoint: Point): Boolean {
+    for (i in targetArray.indices) {
+        if (targetArray[i].x == targetPoint.x && targetArray[i].y == targetPoint.y) {
+            return true
+        }
+    }
+
+    return false
 }
 
 fun arePointsValidForTriangle(targetPoints: Array<Point>): Boolean {

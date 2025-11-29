@@ -12,12 +12,8 @@ package models
 
 /**
  * Модель передачи данных для результатов нахождения дистанции между точками
- * @param givenDistance Дистанция
- * @param givenFirstPointNumber номер первой точки
- * @param givenSecondPointNumber номер второй точки
+ * @param distance Дистанция
+ * @param start номер первой точки
+ * @param end номер второй точки
  */
-data class DistanceResult(private val givenDistance: Double, private val givenFirstPointNumber: Int, private val givenSecondPointNumber: Int) {
-    val distance: Double = givenDistance
-    val start: Int = givenFirstPointNumber
-    val end: Int = givenSecondPointNumber
-}
+data class DistanceResult(val distance: Double, val start: Int, val end: Int)

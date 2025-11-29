@@ -1,5 +1,4 @@
-import models.Point
-import models.Triangle
+import models.shapes.Point
 
 /////////////////////////////////////////////
 //
@@ -16,28 +15,17 @@ fun main() {
         """Программа, выполняет следующий функционал:
         Треугольник описан координатами трех своих вершин. 
         Указаны координаты отдельной точки. 
-        Составить программу, показывающую где находится точка - внутри или вне треугольника. 
+        Программа показывает где находится точка - внутри или вне треугольника. 
         Треугольник и точка находятся на координатной плоскости."""
     )
 
     val triangle = initializeTriangle() ?: return
 
-    var point = Point(0.0,0.0)
+    val point = enterPoint(1) ?: return
 
-    try {
-        print("Введите X точки: ")
-        point.x = readln().toDouble()
-
-        print("Введите Y точки: ")
-        point.y = readln().toDouble()
-
-    } catch (_: Exception) {
-        print("Вводить только числа")
-        return
-    }
-
-    if (triangle.isDotInsideOrOnEdge(point)) {
+    if (triangle.isPointInsideOrOnEdge(point)) {
         println("Точка внутри треугольника")
+
     } else {
         println("Точка за пределами или на треугольнике")
     }
